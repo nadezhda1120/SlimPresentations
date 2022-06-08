@@ -1,0 +1,11 @@
+1) Start MAMP/WAMP
+
+2) Open mysql CLI (type mysql in terminal) and execute following commands in the correct order:
+    * CREATE USER 'webadmin'@'localhost' IDENTIFIED BY 'webadmin';
+    * GRANT ALL PRIVILEGES ON *.* TO 'webadmin'@'localhost';
+    * CREATE DATABASE webproject;
+    * use webproject;
+    * CREATE TABLE `presentations` ( `id` INTEGER NOT NULL AUTO_INCREMENT, `name` varchar(30) NOT NULL, `data` text NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    * INSERT INTO `presentations` (`id`, `name`, `data`) VALUES ('2', 'HTML', '=slide\r\n p \'Test\'');
+
+3) ACCESS: http://localhost:8888/index.php
