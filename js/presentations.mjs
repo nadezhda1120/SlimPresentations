@@ -1,5 +1,3 @@
-import slm from "slm";
-
 var escape = html => html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 var lineReplace = line =>
@@ -74,7 +72,6 @@ var render = lecture => {
 	return slides.map((slide, i) => {
 		console.log(slide);
 		try {
-
 			return slm.render(slide);
 		} catch (e) {
 			onError(e, slidesMeta[i]);

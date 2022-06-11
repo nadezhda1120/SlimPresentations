@@ -20,6 +20,6 @@ if ($mysqli->connect_error) {
 }
 
 global $result;
-$sql = "SELECT id, name, data FROM presentations";
+$sql = "SELECT id, name, tags, data FROM presentations";
 $result = $mysqli->query($sql);
 ?>
