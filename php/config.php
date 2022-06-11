@@ -18,4 +18,8 @@ if ($mysqli->connect_error) {
     echo 'Error: ' . $mysqli->connect_error;
     exit();
 }
+
+global $result;
+$sql = "SELECT id, name, data FROM presentations";
+$result = $mysqli->query($sql);
 ?>

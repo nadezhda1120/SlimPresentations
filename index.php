@@ -1,8 +1,5 @@
 <?php
 require_once "php/config.php";
-$sql = "SELECT id, name, data FROM presentations";
-$result = $mysqli->query($sql);;
-
 ?>
 
 <!DOCTYPE html>
@@ -19,13 +16,8 @@ $result = $mysqli->query($sql);;
     <script>
         $(document).ready(function(){
             $('.button').click(function(){
-                var clickBtnValue = $(this).val();
-                var ajaxurl = 'php/updatePresentation.php',
-                    data =  {'action': clickBtnValue};
-                $.post(ajaxurl, data, function (response) {
-                    // Response div goes here.
-                    alert("action performed successfully");
-                });
+                var id = this.id.replace("updateButton#", "");
+                location.href = "php/updatePresentation.php?id=" + id;
             });
         });
     </script>
@@ -55,7 +47,10 @@ $result = $mysqli->query($sql);;
                 echo "<tr>";
                 echo "<td>".$res["id"]."</td>";
                 echo "<td>".$res["name"]."</td>";
-                echo "<td><button class='button'><i class=\"fa-brands fa-sistrix\"></i></button><button><i class=\"fa-solid fa-pen-to-square\"></i></button></td>";
+                echo "<td>
+                        <button><i class=\"fa-brands fa-sistrix\"></i></button>
+                        <button id='updateButton#{$res["id"]}' class='button'><i class=\"fa-solid fa-pen-to-square\"></i></button>
+                      </td>";
                 echo "</tr>";
             }
             ?>
