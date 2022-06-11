@@ -15,15 +15,34 @@ require_once "php/config.php";
     <title>Система за генериране на презентации</title>
     <script>
         $(document).ready(function(){
-            $('.button').click(function(){
-                var id = this.id.replace("updateButton#", "");
-                location.href = "php/updatePresentation.php?id=" + id;
+            $('.create_presentation').click(function(){
+                location.href = "createPresentation.php";
             });
         });
         $(document).ready(function(){
-            $('.add_new').click(function(){
+            $('.updateButton').click(function(){
                 var id = this.id.replace("updateButton#", "");
-                location.href = "php/addPresentation.php";
+                location.href = "updatePresentation.php?id=" + id;
+            });
+        });
+        $(document).ready(function(){
+            $('.deleteButton').click(function(){
+                var id = this.id.replace("deleteButton#", "");
+                $.ajax({
+                    type: "GET",
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Content-Type", "application/json");
+                    },
+                    url: "php/delete.php?id=" + id,
+                    success: function (data) {
+                        location.reload();
+                        alert("OKEY");
+                        $("#result").html("Successful");
+                    },
+                    error: function (error) {
+                        alert("NOTOEKY");
+                    }
+                });
             });
         });
     </script>
@@ -32,7 +51,7 @@ require_once "php/config.php";
 <header>
     <h2>Web Slides</h2>
     <nav>
-        <input placeholder="topic"/>
+        <button class="create_presentation" style="background-color: #0298cf">Create presentation</button>
         <button class="add_new">+ Add New</button>
     </nav>
 
@@ -56,8 +75,8 @@ require_once "php/config.php";
                 echo "<td>".$res["name"]."</td>";
                 echo "<td>".$res["tags"]."</td>";
                 echo "<td>
-                        <button><i class=\"fa-brands fa-sistrix\"></i></button>
-                        <button id='updateButton#{$res["id"]}' class='button'><i class=\"fa-solid fa-pen-to-square\"></i></button>
+                        <button id='updateButton#{$res["id"]}' class='updateButton'><i class=\"fa-solid fa-pen-to-square\"></i></button>
+                        <button id='deleteButton#{$res["id"]}' class='deleteButton'>Delete</button> <!-- TODO: CHANGE ICON. THIS IS DELETE BUTTON -->
                       </td>";
                 echo "</tr>";
             }

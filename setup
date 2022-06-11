@@ -6,6 +6,6 @@
     * CREATE DATABASE webproject;
     * use webproject;
     * CREATE TABLE `presentations` ( `id` INTEGER NOT NULL AUTO_INCREMENT, `name` varchar(30) NOT NULL, `data` text NOT NULL, `tags` varchar(256) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
-    * INSERT INTO `presentations` (`id`, `name`, `tags`, `data`) VALUES ('2', 'HTML', 'beginner, security', '=slide\r\n p \'Test\'');
+    * INSERT INTO `presentations` (`name`, `tags`, `data`) VALUES ('HTML', 'beginner, security', '=slide\r\n p \'Test\'');
 
 3) ACCESS: http://localhost:8888/index.php
