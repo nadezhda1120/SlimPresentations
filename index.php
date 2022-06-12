@@ -15,6 +15,11 @@ require_once "php/config.php";
     <title>Система за генериране на презентации</title>
     <script>
         $(document).ready(function(){
+            $('.add_new').click(function(){
+                location.href = "php/addPresentation.php";
+            });
+        });
+        $(document).ready(function(){
             $('.create_presentation').click(function(){
                 location.href = "createPresentation.php";
             });
