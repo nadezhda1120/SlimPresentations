@@ -2,8 +2,13 @@
 require_once "php/config.php";
 
 $id = $_GET["id"];
-mysqli_data_seek($result, $id);
-$data = mysqli_fetch_array($result)['data'];
+$data = "";
+foreach($result as $row) {
+    if ($row['id'] == $id) {
+        $data = $row['data'];
+        break;
+    }
+}
 ?>
 
 <!DOCTYPE html>
