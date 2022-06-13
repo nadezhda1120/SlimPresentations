@@ -6,7 +6,7 @@ $post = json_decode(file_get_contents("php://input"), true);
 $name =  $post["name"];
 
 $tag = $post["tag"];
-$data = $post["data"];
+$data = base64_encode($post["data"]);
 $sql = "INSERT INTO `presentations` (`name`, `tags`, `data`) VALUES ('".$name."', '".$tag."', '".$data."')";
 
 if ($mysqli->query($sql) === TRUE) {

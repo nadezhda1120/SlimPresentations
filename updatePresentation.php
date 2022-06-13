@@ -5,7 +5,7 @@ $id = $_GET["id"];
 $data = "";
 foreach($result as $row) {
     if ($row['id'] == $id) {
-        $data = $row['data'];
+        $data = base64_decode($row['data']);
         break;
     }
 }
@@ -25,7 +25,7 @@ foreach($result as $row) {
     <script>
         $(document).ready(function(){
             $('#validate').click(function(){
-                var data = document.getElementById("presentationTextArea").value;
+                var data = btoa(document.getElementById("presentationTextArea").value);
                 var json = {
                     id: <?php echo $id; ?>,
                     data: data
