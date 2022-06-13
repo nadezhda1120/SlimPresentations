@@ -2,7 +2,7 @@
 $db_host = 'localhost';
 $db_user = 'webadmin';
 $db_password = 'webadmin';
-$db_db = 'webproject';
+$db_db = 'webadmin';
 global $mysqli;
 
 $mysqli = @new mysqli(
