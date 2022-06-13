@@ -56,8 +56,8 @@ require_once "php/config.php";
 <header>
     <h2>Web Slides</h2>
     <nav>
-        <button class="create_presentation" style="background-color: #0298cf">Create presentation</button>
-        <button class="add_new">+ Add New</button>
+        <button class="create_presentation">Create presentation</button>
+        <button class="add_new">Create Slide</button>
     </nav>
 
 </header>
@@ -81,7 +81,7 @@ require_once "php/config.php";
                 echo "<td>".$res["tags"]."</td>";
                 echo "<td>
                         <button id='updateButton#{$res["id"]}' class='updateButton'><i class=\"fa-solid fa-pen-to-square\"></i></button>
-                        <button id='deleteButton#{$res["id"]}' class='deleteButton'>Delete</button> <!-- TODO: CHANGE ICON. THIS IS DELETE BUTTON -->
+                        <button id='deleteButton#{$res["id"]}' class='deleteButton'><i class=\"fa-solid fa-trash\"></i></button> 
                       </td>";
                 echo "</tr>";
             }

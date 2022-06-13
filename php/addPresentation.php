@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 require_once "config.php";
 ?>
 
@@ -8,7 +9,7 @@ require_once "config.php";
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/createSlide.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <!-- <script defer src="javascript/send_user_data.js"></script> -->
@@ -19,6 +20,7 @@ require_once "config.php";
                 $input_name = $("#input_name").val();
                 $input_tag = $("#input_tag").val();
                 $input_data = $("#input_data").val();
+                console.log($input_data);
                 var json = {
                     name: $input_name,
                     tag: $input_tag,
@@ -42,28 +44,26 @@ require_once "config.php";
         });
     });
   </script>
-
-    </script>
 </head>
 <body>
 <header>
     <h2>Web Slides</h2>
     <nav>
-        <button class="save" style="background-color: #0298cf">Save</button>
+        <button class="save" >Save</button>
     </nav>
 </header>
 <main>
 </main>
-    <h3> Add the folowing information for new presentation: </h2>
+    <label id="inf"> ADD THE FOLLOWING INFORMATION FOR NEW PRESENTATION</label>
     <form class="container">
         <label for="input_name">Name:</label>
-        <input id="input_name" name="input_name" class="addInfoFiled" type="text" placeholder="Enter some text...">
+        <input id="input_name" name="input_name" class="addInfoFiled" type="text" placeholder="Enter some title...">
 
         <label for="input_tag">Tags:</label>
-        <input id="input_tag" name="input_tag" class="addInfoFiled" type="text" placeholder="Enter some text...">
+        <input id="input_tag" name="input_tag" class="addInfoFiled" type="text" placeholder="Enter tags separated by commas">
 
         <label for="input_data">Data:</label>
-        <textarea id="input_data" name="input_data" style="height:300px" class="addInfoFiled" placeholder="Enter some text..."></textarea>
+        <textarea id="input_data" name="input_data" style="height:300px" class="addInfoFiled" placeholder="Enter some data..."></textarea>
         </form>
 </body>
 </html>

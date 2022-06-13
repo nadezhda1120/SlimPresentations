@@ -8,7 +8,7 @@ require_once "php/config.php";
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="css/createPresentation.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <title>Система за генериране на презентации</title>
@@ -60,11 +60,30 @@ require_once "php/config.php";
 <body>
 <header>
     <h2>Web Slides</h2>
+    <button id="get_presentation_file" >Build</button>
 </header>
 <main>
-    <label for="tags">Tags:</label>
-    <input id="tags" type="text" placeholder="Enter tags separated with commas"/>
-    <button id="get_presentation_file" style="background-color: #0298cf">Build</button>
+    <section id='left'>
+        <label id="tag-header" for="tags">Tags:</label>
+        <textarea id="tags" type="text" placeholder="Enter tags separated with commas"></textarea>
+    </section>
+    <section id='right'>
+        <label id="tags-example">Tags to choose from:</label>
+        <br>
+        <table>
+            <tbody>
+                <?php
+                        
+                        foreach ($result as $res) {
+                            echo "<tr>";
+                            echo "<td>".$res["tags"]."</td>";
+                            echo "</tr>";
+                        }
+                ?>
+            </tbody>
+        </table>
+    </section>
+
 </main>
 
 </body>
