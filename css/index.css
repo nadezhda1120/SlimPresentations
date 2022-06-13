@@ -214,3 +214,22 @@ label {
     color: #0298cf;
     resize: vertical;
 }
+
+#tags {
+    width: 40%;
+    display: block;
+    align-items: center;
+    padding: 10px 10px;
+    margin: 0 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 70px;
+    outline: none;
+    border: 1px solid #0298cf;
+    border-radius: 6px;
+    color: #0298cf;
+}
+
+#get_presentation_file {
+    margin-left: 70px;
+}

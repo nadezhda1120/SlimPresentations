@@ -25,7 +25,7 @@ foreach($result as $row) {
     <script>
         $(document).ready(function(){
             $('#validate').click(function(){
-                var data = btoa(document.getElementById("presentationTextArea").value);
+                var data = btoa(unescape(encodeURIComponent(document.getElementById("presentationTextArea").value)))
                 var json = {
                     id: <?php echo $id; ?>,
                     data: data
@@ -39,7 +39,7 @@ foreach($result as $row) {
                     data: JSON.stringify(json),
                     success: function (data) {
                         alert("OKEY");
-                        $("#result").html("Successful");
+                        window.location.href="../index.php";
                     },
                     error: function (error) {
                         alert("NOTOEKY");
