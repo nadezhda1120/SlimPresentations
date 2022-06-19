@@ -6,10 +6,9 @@ $tags_array = explode (",", $tags);
 $newData = "";
 
 foreach ($tags_array as $tag) {
-
     foreach($result as $row) {
         if (str_contains($row['tags'], $tag)) {
-            $newData .= $row['data'] . "\n";
+            $newData .= base64_decode($row['data']) . "\n";
         }
     }
 }

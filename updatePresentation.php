@@ -3,7 +3,7 @@ require_once "php/config.php";
 
 $id = $_GET["id"];
 $data = "";
-foreach($result as $row) {
+foreach ($result as $row) {
     if ($row['id'] == $id) {
         $data = base64_decode($row['data']);
         break;
@@ -23,8 +23,17 @@ foreach($result as $row) {
     <title>Система за генериране на презентации</title>
 
     <script>
-        $(document).ready(function(){
-            $('#validate').click(function(){
+        $(document).ready(function () {
+            // On tab add two spaces
+            const textarea = document.querySelector('textarea')
+            textarea.addEventListener('keydown', (e) => {
+                if (e.keyCode === 9) {
+                    e.preventDefault();
+                    textarea.setRangeText('  ', textarea.selectionStart, textarea.selectionStart, 'end');
+                }
+            });
+
+            $('#validate').click(function () {
                 var data = btoa(unescape(encodeURIComponent(document.getElementById("presentationTextArea").value)))
                 var json = {
                     id: <?php echo $id; ?>,
@@ -39,7 +48,7 @@ foreach($result as $row) {
                     data: JSON.stringify(json),
                     success: function (data) {
                         alert("OKEY");
-                        window.location.href="../index.php";
+                        window.location.href = "index.php";
                     },
                     error: function (error) {
                         alert("NOTOEKY");
@@ -51,16 +60,14 @@ foreach($result as $row) {
 </head>
 <body>
 <header>
-    <h2>Web Slides</h2>
+    <h2><a style="text-decoration: none; color: inherit" href="index.php">Web Slides</a></h2>
     <button id="validate">Update</button>
 </header>
 <main>
     <label for="presentationTextArea">ADD CHANGES YOU WANT TO SEE</label>
     <br>
-    <textarea id="presentationTextArea" name="w3review" class=".textarea">
-        <?php echo $data; ?>
-    </textarea>
-    
+    <textarea id="presentationTextArea" name="w3review" class=".textarea"><?php echo $data; ?></textarea>
+
 </main>
 
 </body>
