@@ -50,6 +50,25 @@ require_once "php/config.php";
                 });
             });
         });
+
+        $(document).ready(function(){
+            $('.create_slides_checked').click(function(){
+                var data = " ";
+                var chosenSlides = 0;
+                $('input[type="checkbox"]:checked').each(function() {
+                    data += this.value;
+                    data += "\n";
+                    chosenSlides++;
+                });
+                if(data != "" && chosenSlides > 1) {
+                    location.href = "mergeSlides.php?data=" + data;
+                } else if (chosenSlides == 1) {
+                     alert("Chose at least one more slide in order to create new file!");
+                } else if (chosenSlides == 0) {
+                     alert("Chose at least two slides in order to create new file!");
+                } 
+            });
+        });
     </script>
 </head>
 <body>
@@ -66,7 +85,8 @@ require_once "php/config.php";
         <table>
             <thead>
             <tr>
-                <th>#</th>
+                <th>Add</th>
+                <th>ID</th>
                 <th>Topic</th>
                 <th>Tags</th>
                 <th>Action</th>
@@ -76,6 +96,9 @@ require_once "php/config.php";
             <?php
             foreach ($result as $res) {
                 echo "<tr>";
+                echo "<td><input type='checkbox' 
+                name='checkbox[]'
+                id='checkbox' value='".$res["data"]."'></td>";
                 echo "<td>".$res["id"]."</td>";
                 echo "<td>".$res["name"]."</td>";
                 echo "<td>".$res["tags"]."</td>";
@@ -85,6 +108,10 @@ require_once "php/config.php";
                       </td>";
                 echo "</tr>";
             }
+            echo "<tr>";
+            echo "<td><button class='create_slides_checked'>Merge</button>
+            </td>";
+            echo "</tr>";
             ?>
             </tbody>
         </table>

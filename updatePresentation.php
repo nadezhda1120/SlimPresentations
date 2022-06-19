@@ -39,7 +39,7 @@ foreach($result as $row) {
                     data: JSON.stringify(json),
                     success: function (data) {
                         alert("OKEY");
-                        window.location.href="../index.php";
+                        window.location.href="index.php";
                     },
                     error: function (error) {
                         alert("NOTOEKY");
