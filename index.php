@@ -53,7 +53,7 @@ require_once "php/config.php";
 
         $(document).ready(function(){
             $('.create_slides_checked').click(function(){
-                var newData = " ";
+                var newData = "";
                 var chosenSlides = 0;
                 $('input[type="checkbox"]:checked').each(function() {
                     newData += decodeURIComponent(escape(window.atob(this.value)));
