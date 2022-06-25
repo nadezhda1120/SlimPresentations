@@ -53,30 +53,46 @@ require_once "php/config.php";
 
         $(document).ready(function(){
             $('.create_slides_checked').click(function(){
-                var data = " ";
+                var newData = " ";
                 var chosenSlides = 0;
                 $('input[type="checkbox"]:checked').each(function() {
-                    data += this.value;
-                    data += "\n";
+                    newData += decodeURIComponent(escape(window.atob(this.value)));
+                    newData += "\n";
                     chosenSlides++;
                 });
-                if(data != "" && chosenSlides > 1) {
-                    location.href = "mergeSlides.php?data=" + data;
-                } else if (chosenSlides == 1) {
-                     alert("Chose at least one more slide in order to create new file!");
-                } else if (chosenSlides == 0) {
-                     alert("Chose at least two slides in order to create new file!");
-                } 
+                if(newData != "" && chosenSlides > 1) {
+                    save("presentation.slim", newData);
+                 } else if (chosenSlides == 1) {
+                      alert("Chose at least one more slide in order to create new file!");
+                 } else if (chosenSlides == 0) {
+                      alert("Chose at least two slides in order to create new file!");
+                 } 
             });
         });
+
+        function save(filename, data) {
+            const blob = new Blob([data], {type: 'text/csv'});
+            if(window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveBlob(blob, filename);
+            }
+            else{
+                const elem = window.document.createElement('a');
+                elem.href = window.URL.createObjectURL(blob);
+                elem.download = filename;
+                document.body.appendChild(elem);
+                elem.click();
+                document.body.removeChild(elem);
+            }
+        }
     </script>
 </head>
 <body>
 <header>
     <h2>Web Slides</h2>
     <nav>
-        <button class="create_presentation">Create presentation</button>
+        <button class="create_presentation">Combine Slides by TAG</button>
         <button class="add_new">Create Slide</button>
+        <button class='create_slides_checked'>Merge Slides</button>
     </nav>
 
 </header>
@@ -108,10 +124,6 @@ require_once "php/config.php";
                       </td>";
                 echo "</tr>";
             }
-            echo "<tr>";
-            echo "<td><button class='create_slides_checked'>Merge</button>
-            </td>";
-            echo "</tr>";
             ?>
             </tbody>
         </table>
