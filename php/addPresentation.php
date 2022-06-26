@@ -105,7 +105,7 @@ require_once "config.php";
                         alert(this.response);
                     }
                 }
-
+                xhr.send(params);
             });
         });
     </script>
