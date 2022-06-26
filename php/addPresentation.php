@@ -21,80 +21,92 @@ require_once "config.php";
                 var input_name = $("#input_name").val();
                 var input_tag = $("#input_tag").val();
                 var input_data = $("#input_data").val();
-                console.log(input_data);
-                if (checkBox.checked == false) { 
-                    var json = {
-                        name: input_name,
-                        tag: input_tag,
-                        data: btoa(unescape(encodeURIComponent(input_data)))
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "add.php",
-                        data: JSON.stringify(json),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (data) {
-                            window.location.href = "../index.php";
-                        },
-                        error: function (error) {
-                            alert(console.log(error));
-                        }
-                    });
-                } else {
-                    var lines = input_data.split(/\e?\n/);
-                    var counter = 1;
-                    var presentation_data = "";
-                    for (var i = 0; i < lines.length; i++) {
-                        if ((lines[i].startsWith("= slide") && i !== 0)) {
-                            var json_data = {
-                                name: input_name + " " + counter,
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:3000");
+                const params = new URLSearchParams();
+                params.set("data", btoa(unescape(encodeURIComponent(input_data))));
+                xhr.onload = function () {
+                    if (this.response === "SUCCESS") {
+                        if (checkBox.checked == false) {
+                            var json = {
+                                name: input_name,
                                 tag: input_tag,
-                                data: btoa(unescape(encodeURIComponent(presentation_data)))
+                                data: btoa(unescape(encodeURIComponent(input_data)))
                             };
-                            console.log(json_data);
-                            counter++;
-                            presentation_data = lines[i];
                             $.ajax({
                                 type: "POST",
                                 url: "add.php",
-                                data: JSON.stringify(json_data),
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                error: function (error) {
-                                    alert(console.log(error));
-                                }
-                            });
-                        } else if (i === lines.length - 1) {
-                            presentation_data += "\n" + lines[i];
-                            var json_data = {
-                                name: input_name + " " + counter,
-                                tag: input_tag,
-                                data: btoa(unescape(encodeURIComponent(presentation_data)))
-                            };
-                            console.log(json_data);
-                            counter++;
-                            presentation_data = "";
-                            $.ajax({
-                                type: "POST",
-                                url: "add.php",
-                                data: JSON.stringify(json_data),
+                                data: JSON.stringify(json),
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (data) {
-                                console.log(data);
-                                 alert("Presentation saved");
-                                 window.location.href="../index.php";
-                                 },
+                                    alert("Presentation saved");
+                                    window.location.href = "../index.php";
+                                },
                                 error: function (error) {
                                     alert(console.log(error));
                                 }
                             });
                         } else {
-                            presentation_data += "\n" + lines[i];
+                            var lines = input_data.split(/\e?\n/);
+                            var counter = 1;
+                            var presentation_data = "";
+                            for (var i = 0; i < lines.length; i++) {
+                                if ((lines[i].startsWith("= slide") && i !== 0)) {
+                                    var json_data = {
+                                        name: input_name + " " + counter,
+                                        tag: input_tag,
+                                        data: btoa(unescape(encodeURIComponent(presentation_data)))
+                                    };
+                                    console.log(json_data);
+                                    counter++;
+                                    presentation_data = lines[i];
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "add.php",
+                                        data: JSON.stringify(json_data),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        error: function (error) {
+                                            alert(console.log(error));
+                                        }
+                                    });
+                                } else if (i === lines.length - 1) {
+                                    presentation_data += "\n" + lines[i];
+                                    var json_data = {
+                                        name: input_name + " " + counter,
+                                        tag: input_tag,
+                                        data: btoa(unescape(encodeURIComponent(presentation_data)))
+                                    };
+                                    console.log(json_data);
+                                    counter++;
+                                    presentation_data = "";
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "add.php",
+                                        data: JSON.stringify(json_data),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function (data) {
+                                            console.log(data);
+                                            alert("Presentation saved");
+                                            window.location.href = "../index.php";
+                                        },
+                                        error: function (error) {
+                                            alert(console.log(error));
+                                        }
+                                    });
+                                } else {
+                                    presentation_data += "\n" + lines[i];
+                                }
+                            }
                         }
+                    } else {
+                        alert(this.response);
                     }
                 }
+
             });
         });
     </script>

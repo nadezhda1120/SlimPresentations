@@ -39,21 +39,33 @@ foreach ($result as $row) {
                     id: <?php echo $id; ?>,
                     data: data
                 };
-                $.ajax({
-                    type: "POST",
-                    beforeSend: function (request) {
-                        request.setRequestHeader("Content-Type", "application/json");
-                    },
-                    url: "php/update.php",
-                    data: JSON.stringify(json),
-                    success: function (data) {
-                        alert("OKEY");
-                        window.location.href = "index.php";
-                    },
-                    error: function (error) {
-                        alert("NOTOEKY");
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:3000");
+                const params = new URLSearchParams();
+                params.set("data", data);
+                xhr.onload = function () {
+                    if (this.response === "SUCCESS") {
+                        $.ajax({
+                            type: "POST",
+                            beforeSend: function (request) {
+                                request.setRequestHeader("Content-Type", "application/json");
+                            },
+                            url: "php/update.php",
+                            data: JSON.stringify(json),
+                            success: function (data) {
+                                alert("OKEY");
+                                window.location.href = "index.php";
+                            },
+                            error: function (error) {
+                                alert("NOTOEKY");
+                            }
+                        });
+                    } else {
+                        alert(this.response);
                     }
-                });
+                }
+                xhr.send(params);
             });
         });
     </script>
@@ -62,9 +74,6 @@ foreach ($result as $row) {
 <header>
     <h2><a style="text-decoration: none; color: inherit" href="index.php">Web Slides</a></h2>
     <button id="validate">Update</button>
-    <div>
-        <p id="alert" style="visibility:hidden">Alert</p>
-    </div>
 </header>
 <main>
     <label for="presentationTextArea">ADD CHANGES YOU WANT TO SEE</label>
