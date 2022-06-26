@@ -7,7 +7,7 @@ $name =  $post["name"];
 
 $tag = $post["tag"];
 $data = $post["data"];
-$sql = "INSERT INTO `presentations` (`name`, `tags`, `data`) VALUES ('".$name."', '".$tag."', '".$data."')";
+$sql = "INSERT INTO `presentations1` (`name`, `tags`, `data`) VALUES ('".$name."', '".$tag."', '".$data."')";
 
 if ($mysqli->query($sql) === TRUE) {
     http_response_code(200);
