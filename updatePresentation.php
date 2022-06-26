@@ -62,6 +62,9 @@ foreach ($result as $row) {
 <header>
     <h2><a style="text-decoration: none; color: inherit" href="index.php">Web Slides</a></h2>
     <button id="validate">Update</button>
+    <div>
+        <p id="alert" style="visibility:hidden">Alert</p>
+    </div>
 </header>
 <main>
     <label for="presentationTextArea">ADD CHANGES YOU WANT TO SEE</label>

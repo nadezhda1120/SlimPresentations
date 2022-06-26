@@ -17,11 +17,12 @@ require_once "config.php";
     <script type="text/javascript">
         $(document).ready(function () {
             $(".save").on('click', function () {
+                var checkBox = document.getElementById("seperate_slides");
                 var input_name = $("#input_name").val();
                 var input_tag = $("#input_tag").val();
                 var input_data = $("#input_data").val();
                 console.log(input_data);
-                if (false) { //TODO: CHECKBOX check
+                if (checkBox.checked == false) { 
                     var json = {
                         name: input_name,
                         tag: input_tag,
@@ -34,7 +35,6 @@ require_once "config.php";
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                            alert("Presentation saved");
                             window.location.href = "../index.php";
                         },
                         error: function (error) {
@@ -116,10 +116,11 @@ require_once "config.php";
     <label for="input_tag">Tags:</label>
     <input id="input_tag" name="input_tag" class="addInfoFiled" type="text"
            placeholder="Enter tags separated by commas">
-
     <label for="input_data">Data:</label>
     <textarea id="input_data" name="input_data" style="height:300px" class="addInfoFiled"
               placeholder="Enter some data..."></textarea>
+    <input type="checkbox" id="seperate_slides">
+    <p for="input_tag">Seperate slides</p>
 </form>
 </body>
 </html>

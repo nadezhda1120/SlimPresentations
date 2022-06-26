@@ -63,9 +63,9 @@ require_once "php/config.php";
                 if(newData != "" && chosenSlides > 1) {
                     save("presentation.slim", newData);
                  } else if (chosenSlides == 1) {
-                      alert("Chose at least one more slide in order to create new file!");
+                      alert("Choose at least one more slide in order to create new file!");
                  } else if (chosenSlides == 0) {
-                      alert("Chose at least two slides in order to create new file!");
+                      alert("Choose at least two slides in order to create new file!");
                  } 
             });
         });

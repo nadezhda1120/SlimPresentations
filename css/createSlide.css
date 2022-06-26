@@ -19,6 +19,9 @@ html::-webkit-scrollbar, section.table-section::-webkit-scrollbar {
        width: 40px;
     }
 } */
+p {
+    display: inline-block;
+}
 
 html::-webkit-scrollbar-thumb, section.table-section::-webkit-scrollbar-thumb {
     background-color: #202225;
@@ -114,7 +117,7 @@ h3 {
 }
 
 label {
-
+    display: block;
     margin-left: 70px;
 }
 
@@ -166,7 +169,6 @@ tbody{
     display: block;
     margin: 0 10px;
     margin-top: 10px;
-    margin-bottom: 30px;
     padding-top: 10px;
     padding: 10px 10px;
     margin-left: 70px;
@@ -176,6 +178,13 @@ tbody{
     color:#393d3f;
     resize: vertical;
     font-size: 14px;
+}
+
+#seperate_slides {
+    margin: 0 10px;
+    margin-bottom: 30px;
+    margin-left: 70px;
+    margin-top: 10px;
 }
 
 
