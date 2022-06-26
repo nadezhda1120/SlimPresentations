@@ -4,7 +4,7 @@ error_reporting(E_ERROR | E_PARSE);
 $db_host = 'localhost';
 $db_user = 'webadmin';
 $db_password = 'webadmin';
-$db_db = 'webadmin';
+$db_db = 'webproject';
 global $mysqli;
 
 $mysqli = new mysqli(
@@ -23,7 +23,7 @@ if ($mysqli->connect_error) {
 }
 
 global $result;
-$sql = "SELECT id, name, tags, data FROM presentations1";
+$sql = "SELECT id, name, tags, data FROM presentations";
 $result = $mysqli->query($sql);
 
 ?>
