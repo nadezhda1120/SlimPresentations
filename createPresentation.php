@@ -16,7 +16,7 @@ require_once "php/config.php";
     <script>
         $(document).ready(function(){
             $('#get_presentation_file').click(function(){
-                var input = document.getElementById("tags").value;
+                var input = document.getElementById("tags").value;//check if tag exist
                 var tags = input.split(',');
 
                 for(var i = 0; i < tags.length; i++) {
@@ -30,13 +30,19 @@ require_once "php/config.php";
                     beforeSend: function (request) {
                         request.setRequestHeader("Content-Type", "application/json");
                     },
+                    //check if tag not found
                     url: "php/getPresentationDataFilterByTags.php?tags=" + input,
                     success: function (data) {
-                        save("presentation.slim", data);
-                        $("#result").html("Successful");
+                        if(data != ""){
+                            save("presentation.slim", data);
+                            $("#result").html("Successful");
+                        } else {
+                            alert("Invalid tag");
+                        }
+                        
                     },
                     error: function (error) {
-                        alert("NOTOEKY");
+                        alert("Error occur while trying to generate presentation");
                     }
                 });
             });
@@ -59,7 +65,7 @@ require_once "php/config.php";
 </head>
 <body>
 <header>
-    <h2>Web Slides</h2>
+    <h2><a style="text-decoration: none; color: inherit;font-size: 40px;" href="index.php">Web Slides</a></h2>
     <button id="get_presentation_file" >Build</button>
 </header>
 <main>
@@ -73,10 +79,15 @@ require_once "php/config.php";
         <table>
             <tbody>
                 <?php
-                        
+                        $arr = array();
                         foreach ($result as $res) {
+                            $arr[] = $res["tags"];
+                        }
+                        $unique = array_unique($arr);
+
+                        foreach ($unique as $u) {
                             echo "<tr>";
-                            echo "<td>".$res["tags"]."</td>";
+                            echo "<td>".$u."</td>";
                             echo "</tr>";
                         }
                 ?>

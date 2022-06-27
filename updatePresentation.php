@@ -54,11 +54,11 @@ foreach ($result as $row) {
                             url: "php/update.php",
                             data: JSON.stringify(json),
                             success: function (data) {
-                                alert("OKEY");
+                                alert("Presentation has been successfully updated.");
                                 window.location.href = "index.php";
                             },
                             error: function (error) {
-                                alert("NOTOEKY");
+                                alert("Something went wrong while trying to update.");
                             }
                         });
                     } else {
@@ -72,7 +72,7 @@ foreach ($result as $row) {
 </head>
 <body>
 <header>
-    <h2><a style="text-decoration: none; color: inherit" href="index.php">Web Slides</a></h2>
+    <h2><a style="text-decoration: none; color: inherit;  font-size: 40px;" href="index.php">Web Slides</a></h2>
     <button id="validate">Update</button>
 </header>
 <main>

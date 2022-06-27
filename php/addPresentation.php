@@ -90,7 +90,7 @@ require_once "config.php";
                                         dataType: "json",
                                         success: function (data) {
                                             console.log(data);
-                                            alert("Presentation saved");
+                                            alert("Presentation is created successfully.");
                                             window.location.href = "../index.php";
                                         },
                                         error: function (error) {
@@ -113,7 +113,7 @@ require_once "config.php";
 </head>
 <body>
 <header>
-    <h2>Web Slides</h2>
+    <h2><a style="text-decoration: none; color: inherit; font-size: 40px;" href="../index.php">Web Slides</a></h2>
     <nav>
         <button class="save">Save</button>
     </nav>

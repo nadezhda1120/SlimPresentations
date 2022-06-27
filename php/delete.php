@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
 $id = $_GET["id"];
-$sql = "DELETE FROM presentations WHERE id='$id'";
+$sql = "DELETE FROM presentations1 WHERE id='$id'";
 
 if ($mysqli->query($sql) === TRUE) {
     http_response_code(200);

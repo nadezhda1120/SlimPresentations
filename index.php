@@ -41,11 +41,11 @@ require_once "php/config.php";
                     url: "php/delete.php?id=" + id,
                     success: function (data) {
                         location.reload();
-                        alert("OKEY");
+                        alert("Successfully deleted");
                         $("#result").html("Successful");
                     },
                     error: function (error) {
-                        alert("NOTOEKY");
+                        alert("Something when wrong while trying to delete");
                     }
                 });
             });
@@ -62,11 +62,9 @@ require_once "php/config.php";
                 });
                 if(newData != "" && chosenSlides > 1) {
                     save("presentation.slim", newData);
-                 } else if (chosenSlides == 1) {
-                      alert("Choose at least one more slide in order to create new file!");
-                 } else if (chosenSlides == 0) {
-                      alert("Choose at least two slides in order to create new file!");
-                 } 
+                 } else if (chosenSlides <= 1) {
+                      alert("Choose at least two slides in order to create new presentation!");
+                 }
             });
         });
 
