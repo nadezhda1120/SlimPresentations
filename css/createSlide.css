@@ -187,6 +187,9 @@ tbody{
     margin-top: 10px;
 }
 
+p {
+    display: inline-block;
+}
 
 textarea:focus, input:focus{
     border-color: #0298cf;
